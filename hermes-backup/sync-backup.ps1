@@ -1,6 +1,7 @@
 <# 
 .SYNOPSIS
     Daily backup sync for Hermes Agent personal data to GitHub repo.
+    EXCLUDES sensitive data: auth.json, tokens, secrets, vault files.
 #>
 
 param(
@@ -30,6 +31,14 @@ function Copy-WithStructure {
     catch { $err = $_; Write-Log ("Failed to copy {0}: {1}" -f $Source, $err) 'ERROR' }
 }
 
+# SENSITIVE FILES TO NEVER BACKUP
+$SensitiveExcludes = @(
+    'auth.json', '*.key', '*.pem', '*.p12', '*.pfx',
+    'vault.json.enc', 'vault.key', 'mcp-tokens',
+    '*.secret', '*.token', 'credentials*', '*.env*',
+    '*.db-shm', '*.db-wal', '*.lock', '*.bak'
+)
+
 Write-Log "Starting Hermes backup sync..."
 Write-Log ("Hermes home: {0}" -f $HermesHome)
 Write-Log ("Repo root:   {0}" -f $RepoRoot)
@@ -38,7 +47,7 @@ Write-Log ("Backup dir:  {0}" -f $BackupDir)
 $dirs = @('config', 'skills', 'memory', 'kanban', 'sessions', 'state', 'plugins', 'cron', 'desktop')
 foreach ($d in $dirs) { if (-not (Test-Path "$BackupDir\$d")) { New-Item -ItemType Directory -Path "$BackupDir\$d" -Force | Out-Null } }
 
-# CONFIG
+# CONFIG (exclude auth.json and sensitive)
 Copy-WithStructure "$HermesHome\config.yaml" "$BackupDir\config\config.yaml"
 Copy-WithStructure "$HermesHome\config.yaml.bak-*" "$BackupDir\config\"
 Copy-WithStructure "$HermesHome\context_length_cache.yaml" "$BackupDir\config\"
@@ -47,7 +56,7 @@ Copy-WithStructure "$HermesHome\gateway_state.json" "$BackupDir\config\"
 Copy-WithStructure "$HermesHome\provider_models_cache.json" "$BackupDir\config\"
 Copy-WithStructure "$HermesHome\spawn-ledger.json" "$BackupDir\config\"
 Copy-WithStructure "$HermesHome\processes.json" "$BackupDir\config\"
-Copy-WithStructure "$HermesHome\auth.json" "$BackupDir\config\"
+# SKIP: auth.json (credential store)
 Copy-WithStructure "$HermesHome\SOUL.md" "$BackupDir\config\"
 
 # SKILLS (personal only)
@@ -61,7 +70,7 @@ if (Test-Path $skillsDir) {
     $allSkillDirs = Get-ChildItem $skillsDir -Directory | Where-Object { $_.Name -notmatch '^\.' }
     foreach ($skillDir in $allSkillDirs) {
         if ($bundledSkills -notcontains $skillDir.Name) {
-            Copy-WithStructure $skillDir.FullName "$BackupDir\skills\$($skillDir.Name)" -Exclude @('.git', 'node_modules', '__pycache__', '*.pyc', '.curator_*', '.usage.json*', '.locks')
+            Copy-WithStructure $skillDir.FullName "$BackupDir\skills\$($skillDir.Name)" -Exclude @('.git', 'node_modules', '__pycache__', '*.pyc', '.curator_*', '.usage.json*', '.locks') + $SensitiveExcludes
             Write-Log ("Backed up personal skill: {0}" -f $skillDir.Name)
         }
     }
@@ -70,27 +79,25 @@ if (Test-Path $skillsDir) {
     Copy-WithStructure "$HermesHome\skills\.curator_state" "$BackupDir\skills\"
 }
 
-# MEMORY
-Copy-WithStructure "$HermesHome\memories" "$BackupDir\memory" -Exclude @('*.lock', '*.db*', '*.wal', '*.shm')
+# MEMORY (exclude locks and DBs)
+Copy-WithStructure "$HermesHome\memories" "$BackupDir\memory" -Exclude @('*.lock', '*.db*', '*.wal', '*.shm') + $SensitiveExcludes
 
-# KANBAN
+# KANBAN (exclude locks, WAL/SHM)
 Copy-WithStructure "$HermesHome\kanban.db" "$BackupDir\kanban\"
-Copy-WithStructure "$HermesHome\kanban.db-shm" "$BackupDir\kanban\"
-Copy-WithStructure "$HermesHome\kanban.db-wal" "$BackupDir\kanban\"
-Copy-WithStructure "$HermesHome\kanban" "$BackupDir\kanban\boards" -Exclude @('*.lock')
+Copy-WithStructure "$HermesHome\kanban" "$BackupDir\kanban\boards" -Exclude @('*.lock', '*.db-shm', '*.db-wal') + $SensitiveExcludes
 
-# SESSIONS (recent 50, metadata only)
+# SESSIONS (recent 50, metadata only, no DBs)
 $sessionDir = "$HermesHome\sessions"
 if (Test-Path $sessionDir) {
     $recentSessions = Get-ChildItem $sessionDir -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 50
     foreach ($sess in $recentSessions) {
         $target = "$BackupDir\sessions\$($sess.Name)"
         New-Item -ItemType Directory -Path $target -Force | Out-Null
-        Get-ChildItem $sess.FullName -File -Include '*.json', '*.yaml', '*.md' | ForEach-Object { Copy-Item $_.FullName -Destination $target -Force }
+        Get-ChildItem $sess.FullName -File -Include '*.json', '*.yaml', '*.md' | Where-Object { $_.Name -notmatch '\.(db|wal|shm|lock)$' } | ForEach-Object { Copy-Item $_.FullName -Destination $target -Force }
     }
 }
 
-# STATE (key files)
+# STATE (key files only, exclude locks/WAL/SHM/bak)
 Copy-WithStructure "$HermesHome\state.db" "$BackupDir\state\" -Exclude @('*.lock', '*.bak', '*.wal', '*.shm')
 Copy-WithStructure "$HermesHome\shared-state.db" "$BackupDir\state\"
 Copy-WithStructure "$HermesHome\projects.db" "$BackupDir\state\"
@@ -100,15 +107,15 @@ $pluginsDir = "$HermesHome\plugins"
 if (Test-Path $pluginsDir) {
     $personalPlugins = Get-ChildItem $pluginsDir -Directory | Where-Object { $_.Name -notmatch '^(chrome-profiles|disk-cleanup|jev)$' }
     foreach ($plug in $personalPlugins) {
-        Copy-WithStructure $plug.FullName "$BackupDir\plugins\$($plug.Name)" -Exclude @('.git', 'node_modules', '__pycache__', '*.pyc')
+        Copy-WithStructure $plug.FullName "$BackupDir\plugins\$($plug.Name)" -Exclude @('.git', 'node_modules', '__pycache__', '*.pyc') + $SensitiveExcludes
     }
 }
 
 # CRON
-Copy-WithStructure "$HermesHome\cron" "$BackupDir\cron" -Exclude @('*.lock')
+Copy-WithStructure "$HermesHome\cron" "$BackupDir\cron" -Exclude @('*.lock') + $SensitiveExcludes
 
 # DESKTOP
-Copy-WithStructure "$HermesHome\desktop" "$BackupDir\desktop" -Exclude @('*.lock')
+Copy-WithStructure "$HermesHome\desktop" "$BackupDir\desktop" -Exclude @('*.lock') + $SensitiveExcludes
 
 Write-Log "File copy complete. Checking git status..."
 Set-Location $RepoRoot
