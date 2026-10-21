@@ -1,0 +1,17 @@
+[
+  {
+    "pid": 12356,
+    "create_time": 1792513353.0125544,
+    "purpose": "serve",
+    "install": "2a21725da08b",
+    "spawner_pid": 4588,
+    "spawner_create": 1792433550.707,
+    "registered_at": 1792513369.9438195,
+    "argv": "C:\\Users\\Kahrman\\AppData\\Local\\hermes\\hermes-agent\\.hermes\\bin\\hermes serve --host 127.0.0.1 --port 0",
+    "host": "127.0.0.1",
+    "port": 63208,
+    "profile": "",
+    "hermes_home": "c:\\users\\kahrman\\appdata\\local\\hermes",
+    "isolated": false
+  }
+]

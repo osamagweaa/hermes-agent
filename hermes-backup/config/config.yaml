@@ -1,0 +1,318 @@
+_config_version: 51
+agent:
+  fast_auto_seconds: 60
+  max_turns: 500
+  personalities: {}
+  reasoning_effort: medium
+  service_tier: "normal"
+  verbose: false
+attachments:
+  storage: hermes-home
+auth:
+  adopt_external_logins: true
+  codex_login_flow: device_code
+browser:
+  extension_control:
+    enabled: false
+  inactivity_timeout: 120
+  cloud_provider: nous
+  use_real_profile: true
+  allow_private_urls: true
+code_execution:
+  max_tool_calls: 50
+  timeout: 300
+compression:
+  checkpoint_required: false
+  codex_app_server_auto: native
+  codex_gpt55_autoraise: true
+  codex_responses_compact_threshold:
+  codex_responses_native: false
+  enabled: true
+  hygiene_max_turn_hold_seconds: 10
+  idle_compact_after_seconds: 0
+  max_attempts: 3
+  min_tail_user_messages: 1
+  proactive_prune_min_reclaim_tokens: 4096
+  proactive_prune_min_result_chars: 8000
+  proactive_prune_tokens: 0
+  progress_notices: false
+  protect_first_n: 3
+  protect_last_n: 20
+  target_ratio: 0.2
+  threshold: 0.5
+cron:
+  catch_up_missed: true
+database:
+  journal_mode: wal
+delegation:
+  max_iterations: 250
+  reasoning_effort: medium
+display:
+  background_process_notifications: concise
+  bell_on_complete: false
+  bell_on_prompt: false
+  busy_input_mode: interrupt
+  cleanup_progress: false
+  compact: false
+  skin: default
+  streaming: true
+  suppress_warning_notifications: false
+  personality: concise
+fallback_providers:
+  - model: xingchen-agi/xing4.0-29b-a4b:free
+    provider: openrouter
+gateway:
+  signal_interrupt_grace_timeout: 1
+  delivery_ledger: true
+  platform_connect_timeout: 30
+  loop_watchdog: true
+  loop_watchdog_probe_interval_s: 30.0
+  loop_watchdog_probe_timeout_s: 10.0
+  loop_watchdog_max_strikes: 3
+  allow_all_users: false
+  bot_loop_guard:
+    enabled: true
+    max_events: 20
+    window_seconds: 300
+    cooldown_seconds: 600
+  startup_watchdog: true
+  startup_watchdog_timeout_seconds: 300
+  write_sessions_json: true
+  multiplex_profiles: true
+  auto_multiplex_migration: true
+  profile_routes: []
+  scale_to_zero:
+    idle_timeout_minutes: 2
+  restart_loop_guard:
+    max_restarts: 3
+    window_seconds: 60
+    max_gap_seconds: 300
+  respawn_storm:
+    max_starts: 5
+    window_seconds: 120
+  message_timestamps:
+    enabled: false
+  max_inbound_media_bytes: 134217728
+  trust_env: true
+  strict: false
+  media_delivery_allow_dirs: []
+  trust_recent_files: true
+  trust_recent_files_seconds: 600
+  api_server:
+    max_concurrent_runs: 10
+    history_tool_output_max_chars: 0
+group_sessions_per_user: true
+kanban:
+  review_dispatch: true
+max_concurrent_sessions:
+memory:
+  memory_char_limit: 2200
+  memory_enabled: true
+  nudge_interval: 10
+  prefetch_spill_enabled: false
+  user_char_limit: 1375
+  user_profile_enabled: true
+  provider: ''
+model:
+  base_url: https://openrouter.ai/api/v1
+  default: nvidia/nemotron-3-ultra-550b-a55b:free
+  provider: openrouter
+  api_mode: chat_completions
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
+    profile_build_offered: true
+  run: false
+platform_toolsets:
+  cli:
+    - browser
+    - chrome_profiles
+    - clarify
+    - code_execution
+    - computer_use
+    - connections
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - jev
+    - kanban
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - video
+    - video_gen
+    - vision
+    - web
+    - x_search
+  discord:
+    - hermes-discord
+    - jev
+  google_chat:
+    - hermes-google_chat
+    - jev
+  qqbot:
+    - hermes-qqbot
+    - jev
+  signal:
+    - hermes-signal
+    - jev
+  slack:
+    - hermes-slack
+    - jev
+  teams:
+    - hermes-teams
+    - jev
+  telegram:
+    - hermes-telegram
+    - jev
+  whatsapp:
+    - hermes-whatsapp
+    - jev
+  yuanbao:
+    - hermes-yuanbao
+    - jev
+plugins:
+  clone_timeout_seconds: 300
+  enabled:
+    - chrome-profiles
+    - disk-cleanup
+    - jev
+  disabled: []
+prompt_caching:
+  cache_ttl: 5m
+providers:
+  ollama-launch:
+    api: http://127.0.0.1:11434/v1
+    default_model: gemma4:31b-cloud
+    models:
+      - gemma4:31b-cloud
+      - gemma4:e2b-it-qat
+      - gemma4:26b
+      - kimi-k2.7-code:cloud
+      - uncensoredai/diddy:latest
+      - glm-5.2:cloud
+      - qwen2.5:3b
+    name: Ollama
+runtime:
+  nofile_soft_limit: 4096
+skills:
+  auto_load:
+    - empire-hermes-runtime
+  creation_nudge_interval: 15
+  external_dirs:
+    - F:/The Empire ecosystem/.claude/skills
+    - C:/Users/Kahrman/.claude/skills
+streaming:
+  enabled: false
+stt:
+  enabled: true
+  language: en
+  local:
+    model: small
+  openai:
+    language: ""
+    max_retries: 1
+    model: whisper-1
+    timeout: 60
+  streaming: true
+telemetry:
+  shared_metrics:
+    enabled: true
+    offer_version: 2
+    send: false
+terminal:
+  backend: local
+  container_cpu: 1
+  container_disk: 51200
+  container_memory: 5120
+  container_persistent: true
+  cwd: .
+  docker_mount_cwd_to_workspace: false
+  home_mode: auto
+  lifetime_seconds: 300
+  timeout: 180
+tool_loop_guardrails:
+  hard_stop_after:
+    exact_failure: 5
+    idempotent_no_progress: 5
+    same_tool_failure: 8
+  hard_stop_enabled: false
+  non_interactive_hard_stop_enabled: true
+  warn_after:
+    exact_failure: 2
+    idempotent_no_progress: 2
+    same_tool_failure: 3
+  warnings_enabled: true
+toolsets:
+  - hermes-cli
+  - web
+updates:
+  backup_keep: 5
+  check: true
+  non_interactive_local_changes: stash
+  pre_update_backup: false
+voice:
+  gpt_live:
+    voice: cedar
+  max_recording_seconds: 125
+  auto_tts: true
+  client_direct: true
+  voice_chat_mode: chained
+tts:
+  provider: gemini
+  gemini:
+    voice: Puck
+image_gen:
+  provider: nous
+local_runtime:
+  enabled: true
+mcp_servers:
+  hugging_face:
+    url: https://huggingface.co/mcp
+    auth: oauth
+    enabled: false
+checkpoints:
+  enabled: true
+wake_word:
+  enabled: true
+approvals:
+  mode: smart
+known_plugin_toolsets:
+  cli:
+    - a2a
+    - chrome_profiles
+    - jev
+known_builtin_toolsets:
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - connections
+    - context_engine
+    - cronjob
+    - delegation
+    - discord
+    - discord_admin
+    - file
+    - image_gen
+    - kanban
+    - memory
+    - session_search
+    - skills
+    - stt
+    - terminal
+    - todo
+    - tts
+    - video
+    - video_gen
+    - vision
+    - web
+    - x_search
+    - yuanbao
+timezone: Europe/Madrid

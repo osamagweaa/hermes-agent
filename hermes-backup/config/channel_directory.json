@@ -1,0 +1,43 @@
+{
+  "updated_at": "2026-10-21T23:48:12.955215",
+  "platforms": {
+    "telegram": [
+      {
+        "id": "717323277",
+        "name": "Squillaci",
+        "type": "dm",
+        "thread_id": null
+      },
+      {
+        "id": "717323277:12512",
+        "name": "Squillaci / topic 12512",
+        "type": "dm",
+        "thread_id": "12512"
+      },
+      {
+        "id": "717323277:12479",
+        "name": "Squillaci / topic 12479",
+        "type": "dm",
+        "thread_id": "12479"
+      },
+      {
+        "id": "717323277:12499",
+        "name": "Squillaci / topic 12499",
+        "type": "dm",
+        "thread_id": "12499"
+      },
+      {
+        "id": "717323277:12490",
+        "name": "Squillaci / topic 12490",
+        "type": "dm",
+        "thread_id": "12490"
+      },
+      {
+        "id": "717323277:12401",
+        "name": "Squillaci / topic 12401",
+        "type": "dm",
+        "thread_id": "12401"
+      }
+    ]
+  }
+}

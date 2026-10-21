@@ -1,0 +1,4 @@
+context_lengths:
+  gemma4:31b-cloud@http://127.0.0.1:11434/v1: 262144
+  kimi-k2.7-code:cloud@http://127.0.0.1:11434/v1: 262144
+  glm-5.2:cloud@http://127.0.0.1:11434/v1: 1048576
