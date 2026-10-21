@@ -1,0 +1,37 @@
+# Hermes backup — sensitive data exclusion
+# This folder is tracked, but these patterns are NEVER committed
+
+# Credentials & secrets
+auth.json
+*.key
+*.pem
+*.p12
+*.pfx
+vault.json.enc
+vault.key
+mcp-tokens/
+*.secret
+*.token
+credentials*
+.env*
+*.env.local
+
+# Database runtime files (regenerated, not needed for restore)
+*.db-shm
+*.db-wal
+*.lock
+*.bak
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Large binaries that don't belong in git
+*.exe
+*.dll
+*.so
+*.dylib
+*.node
