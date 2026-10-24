@@ -1,349 +1,367 @@
 _config_version: 51
 agent:
-    fast_auto_seconds: 60
-    max_turns: 500
-    personalities: {}
-    reasoning_effort: medium
-    service_tier: normal
-    verbose: false
+  fast_auto_seconds: 60
+  max_turns: 500
+  personalities: {}
+  reasoning_effort: medium
+  service_tier: normal
+  verbose: false
 approvals:
-    mode: smart
+  mode: smart
 attachments:
-    storage: hermes-home
+  storage: hermes-home
 auth:
-    adopt_external_logins: true
-    codex_login_flow: device_code
+  adopt_external_logins: true
+  codex_login_flow: device_code
 browser:
-    allow_private_urls: true
-    cloud_provider: nous
-    extension_control:
-        enabled: false
-    inactivity_timeout: 120
-    use_real_profile: true
+  allow_private_urls: true
+  cloud_provider: nous
+  extension_control:
+    enabled: false
+  inactivity_timeout: 120
+  use_real_profile: true
 checkpoints:
-    enabled: true
+  enabled: true
 code_execution:
-    max_tool_calls: 50
-    timeout: 300
+  max_tool_calls: 50
+  timeout: 300
 compression:
-    checkpoint_required: false
-    codex_app_server_auto: native
-    codex_gpt55_autoraise: true
-    codex_responses_compact_threshold: null
-    codex_responses_native: false
-    enabled: true
-    hygiene_max_turn_hold_seconds: 10
-    idle_compact_after_seconds: 0
-    max_attempts: 3
-    min_tail_user_messages: 1
-    proactive_prune_min_reclaim_tokens: 4096
-    proactive_prune_min_result_chars: 8000
-    proactive_prune_tokens: 0
-    progress_notices: false
-    protect_first_n: 3
-    protect_last_n: 20
-    target_ratio: 0.2
-    threshold: 0.5
+  checkpoint_required: false
+  codex_app_server_auto: native
+  codex_gpt55_autoraise: true
+  codex_responses_compact_threshold:
+  codex_responses_native: false
+  enabled: true
+  hygiene_max_turn_hold_seconds: 10
+  idle_compact_after_seconds: 0
+  max_attempts: 3
+  min_tail_user_messages: 1
+  proactive_prune_min_reclaim_tokens: 4096
+  proactive_prune_min_result_chars: 8000
+  proactive_prune_tokens: 0
+  progress_notices: false
+  protect_first_n: 3
+  protect_last_n: 20
+  target_ratio: 0.2
+  threshold: 0.5
 cron:
-    catch_up_missed: true
+  catch_up_missed: true
 database:
-    journal_mode: wal
+  journal_mode: wal
 delegation:
-    max_iterations: 250
-    reasoning_effort: medium
+  max_iterations: 250
+  reasoning_effort: medium
 display:
-    background_process_notifications: concise
-    bell_on_complete: false
-    bell_on_prompt: false
-    busy_input_mode: interrupt
-    cleanup_progress: false
-    compact: false
-    personality: concise
-    skin: default
-    streaming: true
-    suppress_warning_notifications: false
+  background_process_notifications: concise
+  bell_on_complete: false
+  bell_on_prompt: false
+  busy_input_mode: interrupt
+  cleanup_progress: false
+  compact: false
+  personality: concise
+  skin: default
+  streaming: true
+  suppress_warning_notifications: false
 fallback_providers:
-    - model: xingchen-agi/xing4.0-29b-a4b:free
-      provider: openrouter
+  - model: xingchen-agi/xing4.0-29b-a4b:free
+    provider: openrouter
 gateway:
-    allow_all_users: false
-    api_server:
-        history_tool_output_max_chars: 0
-        max_concurrent_runs: 10
-    auto_multiplex_migration: true
-    bot_loop_guard:
-        cooldown_seconds: 600
-        enabled: true
-        max_events: 20
-        window_seconds: 300
-    delivery_ledger: true
-    loop_watchdog: true
-    loop_watchdog_max_strikes: 3
-    loop_watchdog_probe_interval_s: 30
-    loop_watchdog_probe_timeout_s: 10
-    max_inbound_media_bytes: 134217728
-    media_delivery_allow_dirs: []
-    message_timestamps:
-        enabled: false
-    multiplex_profiles: true
-    platform_connect_timeout: 30
-    profile_routes: []
-    respawn_storm:
-        max_starts: 5
-        window_seconds: 120
-    restart_loop_guard:
-        max_gap_seconds: 300
-        max_restarts: 3
-        window_seconds: 60
-    scale_to_zero:
-        idle_timeout_minutes: 2
-    signal_interrupt_grace_timeout: 1
-    startup_watchdog: true
-    startup_watchdog_timeout_seconds: 300
-    strict: false
-    trust_env: true
-    trust_recent_files: true
-    trust_recent_files_seconds: 600
-    write_sessions_json: true
+  allow_all_users: false
+  api_server:
+    history_tool_output_max_chars: 0
+    max_concurrent_runs: 10
+  auto_multiplex_migration: true
+  bot_loop_guard:
+    cooldown_seconds: 600
+    enabled: true
+    max_events: 20
+    window_seconds: 300
+  delivery_ledger: true
+  loop_watchdog: true
+  loop_watchdog_max_strikes: 3
+  loop_watchdog_probe_interval_s: 30
+  loop_watchdog_probe_timeout_s: 10
+  max_inbound_media_bytes: 134217728
+  media_delivery_allow_dirs: []
+  message_timestamps:
+    enabled: false
+  multiplex_profiles: true
+  platform_connect_timeout: 30
+  profile_routes: []
+  respawn_storm:
+    max_starts: 5
+    window_seconds: 120
+  restart_loop_guard:
+    max_gap_seconds: 300
+    max_restarts: 3
+    window_seconds: 60
+  scale_to_zero:
+    idle_timeout_minutes: 2
+  signal_interrupt_grace_timeout: 1
+  startup_watchdog: true
+  startup_watchdog_timeout_seconds: 300
+  strict: false
+  trust_env: true
+  trust_recent_files: true
+  trust_recent_files_seconds: 600
+  write_sessions_json: true
 group_sessions_per_user: true
 image_gen:
-    provider: nous
+  provider: nous
 kanban:
-    review_dispatch: true
+  review_dispatch: true
 known_builtin_toolsets:
-    cli:
-        - browser
-        - clarify
-        - code_execution
-        - computer_use
-        - connections
-        - context_engine
-        - cronjob
-        - delegation
-        - discord
-        - discord_admin
-        - file
-        - image_gen
-        - kanban
-        - memory
-        - session_search
-        - skills
-        - stt
-        - terminal
-        - todo
-        - tts
-        - video
-        - video_gen
-        - vision
-        - web
-        - x_search
-        - yuanbao
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - connections
+    - context_engine
+    - cronjob
+    - delegation
+    - discord
+    - discord_admin
+    - file
+    - image_gen
+    - kanban
+    - memory
+    - session_search
+    - skills
+    - stt
+    - terminal
+    - todo
+    - tts
+    - video
+    - video_gen
+    - vision
+    - web
+    - x_search
+    - yuanbao
 known_plugin_toolsets:
-    cli:
-        - a2a
-        - chrome_profiles
-        - jev
+  cli:
+    - a2a
+    - chrome_profiles
+    - jev
 local_runtime:
-    enabled: true
-max_concurrent_sessions: null
+  enabled: true
+max_concurrent_sessions:
 mcp_servers:
-    comfy-cloud:
-        auth: oauth
-        enabled: true
-        tools:
-            include:
-                - search_templates
-                - get_template
-                - get_template_schema
-                - search_models
-                - search_nodes
-                - get_node
-                - get_prompting_guide
-                - run_template
-                - submit_workflow
-                - partner_generate
-                - upload_file
-                - apply_slots
-                - get_job_status
-                - wait_for_job
-                - get_output
-                - use_previous_output
-                - cancel_job
-                - get_queue
-                - get_billing_status
-                - get_workflow_canvas_url
-        url: https://cloud.comfy.org/mcp
-    hugging_face:
-        auth: oauth
-        enabled: false
-        url: https://huggingface.co/mcp
-memory:
-    memory_char_limit: 2200
-    memory_enabled: true
-    nudge_interval: 10
-    prefetch_spill_enabled: false
-    provider: ""
-    user_char_limit: 1375
-    user_profile_enabled: true
-model:
-    api_key: ollama
-    api_mode: chat_completions
-    base_url: http://127.0.0.1:11434/v1
-    default: gemma4:31b-cloud
-    provider: ollama-launch
-onboarding:
-    run: false
-    seen:
-        busy_input_prompt: true
-        profile_build_offered: true
-        tool_progress_prompt: true
-platform_toolsets:
-    cli:
-        - a2a
-        - browser
-        - chrome_profiles
-        - clarify
-        - code_execution
-        - computer_use
-        - connections
-        - cronjob
-        - delegation
-        - file
-        - image_gen
-        - jev
-        - kanban
-        - memory
-        - session_search
-        - skills
-        - terminal
-        - todo
-        - tts
-        - video
-        - video_gen
-        - vision
-        - web
-        - x_search
-    discord:
-        - hermes-discord
-        - jev
-    google_chat:
-        - hermes-google_chat
-        - jev
-    qqbot:
-        - hermes-qqbot
-        - jev
-    signal:
-        - hermes-signal
-        - jev
-    slack:
-        - hermes-slack
-        - jev
-    teams:
-        - hermes-teams
-        - jev
-    telegram:
-        - hermes-telegram
-        - jev
-    whatsapp:
-        - hermes-whatsapp
-        - jev
-    yuanbao:
-        - hermes-yuanbao
-        - jev
-plugins:
-    clone_timeout_seconds: 300
-    disabled: []
-    enabled:
-        - chrome-profiles
-        - disk-cleanup
-        - jev
-prompt_caching:
-    cache_ttl: 5m
-providers:
-    ollama-launch:
-        api: http://127.0.0.1:11434/v1
-        default_model: gemma4:31b-cloud
-        models:
-            - gemma4:31b-cloud
-            - gemma4:e2b-it-qat
-            - gemma4:26b
-            - kimi-k2.7-code:cloud
-            - uncensoredai/diddy:latest
-            - glm-5.2:cloud
-            - qwen2.5:3b
-        name: Ollama
-runtime:
-    nofile_soft_limit: 4096
-skills:
-    auto_load:
-        - empire-hermes-runtime
-    creation_nudge_interval: 15
-    external_dirs:
-        - F:/The Empire ecosystem/.claude/skills
-        - C:/Users/Kahrman/.claude/skills
-streaming:
-    enabled: false
-stt:
+  comfy-cloud:
+    auth: oauth
     enabled: true
-    language: en
-    local:
-        model: medium
-    openai:
-        language: ""
-        max_retries: 1
-        model: whisper-1
-        timeout: 60
-    streaming: true
+    tools:
+      include:
+        - search_templates
+        - get_template
+        - get_template_schema
+        - search_models
+        - search_nodes
+        - get_node
+        - get_prompting_guide
+        - run_template
+        - submit_workflow
+        - partner_generate
+        - upload_file
+        - apply_slots
+        - get_job_status
+        - wait_for_job
+        - get_output
+        - use_previous_output
+        - cancel_job
+        - get_queue
+        - get_billing_status
+        - get_workflow_canvas_url
+    url: https://cloud.comfy.org/mcp
+  hugging_face:
+    auth: oauth
+    enabled: false
+    url: https://huggingface.co/mcp
+memory:
+  memory_char_limit: 2200
+  memory_enabled: true
+  nudge_interval: 10
+  prefetch_spill_enabled: false
+  provider: ""
+  user_char_limit: 1375
+  user_profile_enabled: true
+model:
+  api_mode: chat_completions
+  base_url: http://127.0.0.1:11434/v1
+  default: gemma4:31b-cloud
+  provider: ollama-launch
+onboarding:
+  run: false
+  seen:
+    busy_input_prompt: true
+    profile_build_offered: true
+    tool_progress_prompt: true
+platform_toolsets:
+  cli:
+    - a2a
+    - browser
+    - chrome_profiles
+    - clarify
+    - code_execution
+    - computer_use
+    - connections
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - jev
+    - kanban
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - video
+    - video_gen
+    - vision
+    - web
+    - x_search
+  discord:
+    - hermes-discord
+    - jev
+  google_chat:
+    - hermes-google_chat
+    - jev
+  qqbot:
+    - hermes-qqbot
+    - jev
+  signal:
+    - hermes-signal
+    - jev
+  slack:
+    - hermes-slack
+    - jev
+  teams:
+    - hermes-teams
+    - jev
+  telegram:
+    - hermes-telegram
+    - jev
+  whatsapp:
+    - hermes-whatsapp
+    - jev
+  yuanbao:
+    - hermes-yuanbao
+    - jev
+plugins:
+  clone_timeout_seconds: 300
+  disabled: []
+  enabled:
+    - chrome-profiles
+    - disk-cleanup
+    - jev
+prompt_caching:
+  cache_ttl: 5m
+providers:
+  ollama-launch:
+    api: http://127.0.0.1:11434/v1
+    default_model: gemma4:31b-cloud
+    models:
+      - gemma4:31b-cloud
+      - gemma4:e2b-it-qat
+      - gemma4:26b
+      - kimi-k2.7-code:cloud
+      - uncensoredai/diddy:latest
+      - glm-5.2:cloud
+      - qwen2.5:3b
+    name: Ollama
+runtime:
+  nofile_soft_limit: 4096
+skills:
+  auto_load:
+    - empire-hermes-runtime
+  creation_nudge_interval: 15
+  external_dirs:
+    - F:/The Empire ecosystem/.claude/skills
+    - C:/Users/Kahrman/.claude/skills
+streaming:
+  enabled: false
+stt:
+  enabled: true
+  language: en
+  local:
+    model: medium
+  openai:
+    language: ""
+    max_retries: 1
+    model: whisper-1
+    timeout: 60
+  streaming: true
 telemetry:
-    shared_metrics:
-        enabled: true
-        offer_version: 2
-        send: false
+  shared_metrics:
+    enabled: true
+    offer_version: 2
+    send: false
 terminal:
-    backend: local
-    container_cpu: 1
-    container_disk: 51200
-    container_memory: 5120
-    container_persistent: true
-    cwd: .
-    docker_mount_cwd_to_workspace: false
-    home_mode: auto
-    lifetime_seconds: 300
-    timeout: 180
+  backend: local
+  container_cpu: 1
+  container_disk: 51200
+  container_memory: 5120
+  container_persistent: true
+  cwd: .
+  docker_mount_cwd_to_workspace: false
+  home_mode: auto
+  lifetime_seconds: 300
+  timeout: 180
 timezone: Europe/Madrid
 tool_loop_guardrails:
-    hard_stop_after:
-        exact_failure: 5
-        idempotent_no_progress: 5
-        same_tool_failure: 8
-    hard_stop_enabled: false
-    non_interactive_hard_stop_enabled: true
-    warn_after:
-        exact_failure: 2
-        idempotent_no_progress: 2
-        same_tool_failure: 3
-    warnings_enabled: true
+  hard_stop_after:
+    exact_failure: 5
+    idempotent_no_progress: 5
+    same_tool_failure: 8
+  hard_stop_enabled: false
+  non_interactive_hard_stop_enabled: true
+  warn_after:
+    exact_failure: 2
+    idempotent_no_progress: 2
+    same_tool_failure: 3
+  warnings_enabled: true
 toolsets:
-    - hermes-cli
-    - web
+  - hermes-cli
+  - web
 tts:
-    elevenlabs:
-        model_id: eleven_v3
-    gemini:
-        model: gemini-2.5-flash-preview-tts
-        voice: Charon
-    provider: edge
+  elevenlabs:
+    model_id: eleven_v3
+  gemini:
+    model: gemini-2.5-flash-preview-tts
+    voice: Charon
+  provider: edge
 updates:
-    backup_keep: 5
-    check: true
-    non_interactive_local_changes: stash
-    pre_update_backup: false
+  backup_keep: 5
+  check: true
+  non_interactive_local_changes: stash
+  pre_update_backup: false
 voice:
-    auto_tts: true
-    client_direct: true
-    gpt_live:
-        voice: marin
-    max_recording_seconds: 125
-    voice_chat_mode: chained
+  auto_tts: true
+  client_direct: true
+  gpt_live:
+    voice: marin
+  max_recording_seconds: 125
+  voice_chat_mode: chained
 wake_word:
-    enabled: true
+  enabled: true
+sessions:
+  auto_archive: true
+  auto_archive_days: 30
+auxiliary:
+  voice_chat:
+    provider: auto
+    model: ''
+  review:
+    provider: auto
+    model: ''
+  approval:
+    provider: ollama-launch
+    model: gemma4:31b-cloud
+    base_url: http://127.0.0.1:11434/v1
+update:
+  installs:
+    d3565c4d59bfea4a:
+      path: C:\Users\Kahrman\AppData\Local\hermes\hermes-agent
+      channel: main
