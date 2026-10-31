@@ -246,13 +246,13 @@
     "first_seen_at": null,
     "last_patched_at": "2026-10-22T06:18:22.541231+00:00",
     "last_reused_patch_generation": 11,
-    "last_used_at": "2026-10-30T00:56:31.233191+00:00",
+    "last_used_at": "2026-10-30T06:28:08.668315+00:00",
     "last_viewed_at": "2026-10-24T02:46:39.572192+00:00",
     "patch_count": 11,
     "patch_generation": 11,
     "pinned": false,
     "state": "active",
-    "use_count": 150,
+    "use_count": 202,
     "view_count": 15
   },
   "empire-orchestrator": {
