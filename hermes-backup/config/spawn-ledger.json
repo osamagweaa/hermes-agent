@@ -1,12 +1,12 @@
 [
   {
-    "pid": 18232,
-    "create_time": 1793397424.32615,
+    "pid": 4412,
+    "create_time": 1793744329.3488548,
     "purpose": "mcp-helper",
     "install": "2a21725da08b",
-    "spawner_pid": 9880,
-    "spawner_create": 1793397223.7037642,
-    "registered_at": 1793397424.3543081,
+    "spawner_pid": 8056,
+    "spawner_create": 1793744213.7683504,
+    "registered_at": 1793744329.3717103,
     "argv": "C:\\WINDOWS\\system32\\cmd.exe /c C:\\Users\\Kahrman\\AppData\\Local\\hermes\\tools\\npm-12.0.2-win32-x64\\npx.CMD -y rea-agents@6.7.0 mcp",
     "host": "",
     "port": null,
